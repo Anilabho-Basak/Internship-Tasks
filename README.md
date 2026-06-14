@@ -12,3 +12,4 @@
 | :--- | :--- | :---: |
 | [Day 01](./Day01) | Fundamental GET and POST REST APIs | ✅ Complete |
 | [Day 02](./Day02) | Intern Management API (CRUD & MongoDB) | ✅ Complete |
+| [Day 03](./Day03) | JWT Authentication & Protected Routes | ✅ Complete |
