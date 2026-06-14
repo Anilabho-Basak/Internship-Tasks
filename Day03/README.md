@@ -1,79 +1,54 @@
-# ⚙️ Day 02 — Database Integration & CRUD Operations
+# 🔒 Day 03 — JWT Authentication & Protected Routes
 
-![Day](https://img.shields.io/badge/Day-02-purple) ![Status](https://img.shields.io/badge/Status-Complete-brightgreen) ![Tech](https://img.shields.io/badge/Tech-Node.js_%7C_MongoDB-orange)
+![Day](https://img.shields.io/badge/Day-03-purple) ![Status](https://img.shields.io/badge/Status-Complete-brightgreen) ![Tech](https://img.shields.io/badge/Tech-Node.js_%7C_MongoDB_%7C_JWT-orange)
 
 ---
 
 ## 🎯 Tasks
 
-- [x] Create CRUD APIs (Create, Read, Update, Delete).
+- [x] Implement User Registration and Login APIs.
+- [x] Add JWT Authentication.
+- [x] Protect private routes using custom middleware.
 - [x] Connect APIs with a database.
-- [x] Test endpoints using Postman.
-- [x] Implement proper error responses.
-- [x] Document APIs with sample requests and responses.
-
-# Intern Management API
-
-## Base URL
-`http://localhost:5000/api/interns`
+- [x] Test all APIs using Postman.
 
 ---
 
-### 1. Get All Interns
-- **Method:** GET
-- **Endpoint:** /
-- **Description:** Retrieves a list of all interns in the database.
-- **Success Response (200 OK):**
-    {
-        "success": true,
-        "count": 1,
-        "data": [
-            {
-                "_id": "65f2a1b...",
-                "name": "Alex Smith",
-                "email": "alex.smith@example.com",
-                "department": "Engineering",
-                "status": "onboarding"
-            }
-        ]
-    }
+## 🔐 Authentication API Reference
 
-### 2. Create New Intern
-- **Method:** POST
-- **Endpoint:** /
-- **Description:** Adds a new intern to the system.
+### **Base URL**
+`http://localhost:5000/api/auth`
+
+---
+
+### **1. Register a New User**
+Creates a new user, hashes their password, and returns a JWT token.
+- **Method:** `POST`
+- **Endpoint:** `/register`
 - **Body (JSON):**
-    {
-        "name": "Alex Smith",
-        "email": "alex.smith@example.com",
-        "department": "Engineering"
-    }
-- **Success Response (201 Created):** Returns the newly created intern object.
-- **Error Response (400 Bad Request):** If validation fails (e.g., missing email).
+  ```json
+  {
+      "name": "Intern Tester",
+      "email": "tester@example.com",
+      "password": "password123"
+  }
+  ```
 
-### 3. Get Single Intern
-- **Method:** GET
-- **Endpoint:** /:id
-- **Description:** Retrieves a specific intern by their unique ID.
-- **Success Response (200 OK):** Returns the requested intern object.
-- **Error Response (404 Not Found):** If the ID does not exist or format is invalid.
+### **2. Login User**
+Authenticates existing credentials and returns a JWT token for session access.
+- **Method:** `POST`
+- **Endpoint:** `/login`
+- **Body (JSON):**
+  ```json
+  {
+      "email": "tester@example.com",
+      "password": "password123"
+  }
+  ```
 
-### 4. Update Intern
-- **Method:** PUT
-- **Endpoint:** /:id
-- **Description:** Updates an existing intern's details.
-- **Body (JSON):** (Include only the fields you want to update)
-    {
-        "status": "active"
-    }
-- **Success Response (200 OK):** Returns the updated intern object.
-
-### 5. Delete Intern
-- **Method:** DELETE
-- **Endpoint:** /:id
-- **Description:** Removes an intern from the database.
-- **Success Response (200 OK):**
-    {
-        "success": true,
-        "message": "Intern deleted"
-    }
+### **3. Access Private Profile (Protected)**
+Verifies the JWT token in the headers before allowing access to user data.
+- **Method:** `GET`
+- **Endpoint:** `/profile`
+- **Headers:**
+  - `Authorization: Bearer <your_jwt_token_here>`
