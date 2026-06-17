@@ -15,3 +15,4 @@
 | [Day 03](./Day03) | JWT Authentication & Protected Routes | ✅ Complete |
 | [Day 04](./Day04) | Database Relationships & File Uploads | ✅ Complete |
 | [Day 05](./Day05) | RBAC, Analytics, CRUD Projects & PDF Certs | ✅ Complete |
+| [Day 06](./Day06) | Background Jobs, Caching & API Security | ✅ Complete |
