@@ -1,0 +1,65 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Internship Backend API",
+    "version": "1.0.0",
+    "description": "API documentation for the Day 07 Capstone Project"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": "Local Development Server"
+    }
+  ],
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "summary": "Register a new user",
+        "tags": ["Authentication"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string", "example": "John Doe" },
+                  "email": { "type": "string", "example": "john@example.com" },
+                  "password": { "type": "string", "example": "password123" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "User successfully registered" },
+          "400": { "description": "Validation error or user already exists" }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "summary": "Login an existing user",
+        "tags": ["Authentication"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string", "example": "john@example.com" },
+                  "password": { "type": "string", "example": "password123" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Successful login returns JWT token" },
+          "401": { "description": "Invalid credentials" }
+        }
+      }
+    }
+  }
+}
